@@ -4,11 +4,13 @@ Vue.use(Vuex);
 
 const SET_LOGIN = "SET_LOGIN";
 const SET_PASSWORD = "SET_PASSWORD";
+const SET_SNACKBAR = "SET_SNACKBAR";
 
 const moduleInfo = {
   state: {
     login: null,
     password: null,
+    snackbar: null,
   },
   getters: {
     login: (state) => {
@@ -17,6 +19,9 @@ const moduleInfo = {
     password: (state) => {
       return state.password;
     },
+    snackbar: (state) => {
+      return state.snackbar;
+    },
   },
   mutations: {
     [SET_LOGIN](state, login) {
@@ -24,6 +29,9 @@ const moduleInfo = {
     },
     [SET_PASSWORD](state, password) {
       state.password = password;
+    },
+    [SET_SNACKBAR](state, snackbar) {
+      state.snackbar = snackbar;
     },
   },
 }
