@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="white" app clipped-right height="52">
+  <v-app-bar color="white" app clipped-right height="58 " elevation="1">
     <v-spacer></v-spacer>
 
     <v-responsive max-width="216">
@@ -7,9 +7,8 @@
         <v-list-item-avatar>
           <img src="https://randomuser.me/api/portraits/men/1.jpg" />
         </v-list-item-avatar>
-
         <v-list-item-content>
-          <v-list-item-title class="title">
+          <v-list-item-title>
             {{ this.$store.state.modinfo.login }}</v-list-item-title
           >
           <v-list-item-subtitle
