@@ -1,13 +1,13 @@
 <template>
-  <v-navigation-drawer v-model="drawer" app width="290" color="#f4fbff">
+  <v-navigation-drawer v-model="drawer" absolute width="290" color="#f4fbff">
     <v-navigation-drawer
-      v-model="drawer"
       app
+      v-model="drawer"
       absolute
-      width="105px"
+      width="103px"
       color="#2693ff"
     >
-      <v-avatar class="d-block text-center mx-auto mt-1" size="38"
+      <v-avatar class="d-block text-center mx-auto mt-1" size="48" tile
         ><v-img src="../../assets/icone.png"></v-img
       ></v-avatar>
 
@@ -68,17 +68,17 @@ export default {
 
 .lab {
   font-weight: bold;
-  margin: 10px;
+  margin: 8px;
   font-size: 8px;
 }
 
 .menu1 {
-  margin-left: -15px;
-  margin-top: 120px;
+  margin-left: -17px;
+  margin-top: 140px;
 }
 
 .menu {
-  margin-top: 180px;
+  margin-top: 220px;
   color: #fff;
   margin-left: 50px;
 }
