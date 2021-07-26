@@ -2,14 +2,19 @@
   <v-app-bar color="white" app clipped-right height="58 " elevation="1">
     <v-spacer></v-spacer>
 
-    <v-responsive max-width="216">
+    <v-responsive max-width="300" class="avatar">
       <v-list-item two-line>
-        <v-list-item-avatar>
+        <v-list-item-avatar right>
           <img src="https://randomuser.me/api/portraits/men/1.jpg" />
         </v-list-item-avatar>
+
         <v-list-item-content>
-          <v-list-item-title>
-            {{ this.$store.state.modinfo.login }}</v-list-item-title
+          <strong>
+            <v-list-item-title class="mt-4">
+              <span>{{
+                this.$store.state.modinfo.login
+              }}</span></v-list-item-title
+            ></strong
           >
           <v-list-item-subtitle
             ><p class="sub">Front-end Developer</p></v-list-item-subtitle
@@ -25,6 +30,10 @@ export default {};
 </script>
 
 <style lang="stylus">
+.avatar {
+  margin: -100px;
+}
+
 .title {
   font-size: 2px;
   font-weight: bold;

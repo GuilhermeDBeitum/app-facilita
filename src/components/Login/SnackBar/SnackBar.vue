@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: "SnackBar",
   data: () => ({
     print: "Login ou senha incorretos! Tente novamente.",
   }),
