@@ -52,7 +52,7 @@
       </v-col>
       <v-row align="center" justify="space-around">
         <v-col cols="12" sm="5">
-          <p class="lostPass">Ensqueci minha senha</p>
+          <span class="lostPass">Esqueci minha senha</span>
         </v-col>
       </v-row>
     </v-container>
@@ -120,6 +120,7 @@ a {
 }
 
 .btn {
+  margin: 20px;
   margin-top: 5px;
   text-transform: capitalize;
 }

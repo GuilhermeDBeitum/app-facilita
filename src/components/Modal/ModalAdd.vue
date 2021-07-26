@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="550">
+  <v-dialog max-width="550" v-model="save_edit">
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         v-bind="attrs"
@@ -11,34 +11,38 @@
         right
         fixed
         bottom
+        @click="index = 1"
       >
         <v-icon dark> mdi-plus </v-icon>
       </v-btn>
     </template>
     <template>
-      <v-card height="430px" class="pa-1">
-        <v-col cols="auto" sm="12">
+      <v-card height="100%" class="pa-3">
+        <v-col cols="12" sm="12">
           <v-row align="center" justify="space-around">
             <v-col cols="12" sm="12">
               <v-col cols="12" sm="12">
                 <h3>{{ formTitle }}</h3>
 
                 <br />
-                <v-form ref="form">
+                <v-form ref="form" v-model="valid" lazy-validation>
                   <label class="label">Titulo:</label>
 
                   <v-text-field
+                    v-model="title"
                     dense
                     hide-details
                     outlined
                     autocomplete="off"
                     color="#41a0ff"
                     class="combo"
+                    :rules="[rules.required]"
                   ></v-text-field>
                   <p></p>
                   <label class="label">Descrição:</label>
 
                   <v-textarea
+                    v-model="description"
                     dense
                     hide-details
                     height="150px"
@@ -48,24 +52,30 @@
                     class="combo"
                     @click:append="show1 = !show1"
                     color="#41a0ff"
+                    :rules="[rules.required]"
                   >
                   </v-textarea>
 
                   <v-row no-gutters>
                     <v-col cols="12" sm="6" md="8">
-                      <v-radio-group row class="combo pa-1">
-                        <v-radio label="Urgente" value="radio-1"></v-radio>
-                        <v-radio label="Importante" value="radio-2"></v-radio>
+                      <v-radio-group row class="combo pa-0" v-model="status">
+                        <v-radio label="Urgente" value="Urgente"></v-radio>
+                        <v-radio
+                          label="Importante"
+                          value="Importante"
+                        ></v-radio>
                       </v-radio-group>
                     </v-col>
-                    <v-col cols="12" md="4" class="pa-3">
+                    <v-col cols="12" md="4" class="pa-4">
                       <v-btn
+                        @click="validate()"
                         right
                         absolute
                         large
                         width="22%"
                         class="btn white--text"
                         color="#1ad18f"
+                        :disabled="!valid"
                         >Adicionar</v-btn
                       >
                     </v-col>
@@ -82,12 +92,77 @@
 
 <script>
 export default {
-  data: () => ({}),
+  data: () => ({
+    index: null,
+    valid: true,
+    rules: {
+      required: (value) => !!value || "Requer.",
+    },
+    title: null,
+    description: null,
+    status: null,
+    editedItem: {
+      title: null,
+      description: null,
+      status: null,
+    },
+  }),
   computed: {
+    tasks: {
+      get() {
+        return this.$store.state.modinfo.tasks;
+      },
+
+      set(newTasks) {
+        this.$store.commit("SET_TASKS", newTasks);
+      },
+    },
+
+    save_edit: {
+      get() {
+        return this.$store.state.modinfo.save_edit;
+      },
+
+      set(newSave_edit) {
+        this.$store.commit("SET_SAVE_EDIT", newSave_edit);
+      },
+    },
+
     formTitle() {
-      return this.$store.state.modinfo.editedIndex === -1
-        ? "Cadastrar Tarefa"
-        : "Editar Tarefa";
+      return this.index === 1 ? "Cadastrar Tarefa" : "Editar Tarefa";
+    },
+  },
+
+  methods: {
+    validate() {
+      if (this.$refs.form.validate() && this.index === 1) {
+        this.saveTask();
+        this.$refs.form.reset();
+      } else if (this.$refs.form.validate() && this.index === 0) {
+        this.editTask();
+      }
+    },
+
+    saveTask() {
+      let vet = [{ title: null, description: null, status: null }];
+
+      vet.forEach((i) => {
+        (i.title = this.title),
+          (i.description = this.description),
+          (i.status = this.status);
+      });
+      this.$store.state.modinfo.tasks.push(...vet);
+      this.save_edit = false;
+      this.index = 0;
+    },
+
+    editTask() {
+      let item = this.$store.state.modinfo.item.item;
+      this.$store.state.modinfo.title = item.title;
+      this.$store.state.modinfo.description = item.description;
+      this.$store.state.modinfo.status = item.status;
+      this.editedItem = Object.assign(item, {});
+      this.save_edit = false;
     },
   },
 };
@@ -99,7 +174,7 @@ a {
 }
 
 .btn {
-  margin-right: 10px;
+  margin-right: 20px;
   margin-top: 5px;
   text-transform: capitalize;
 }

@@ -28,5 +28,3 @@ export default {
   data: () => ({}),
 };
 </script>
-
-<style lang="stylus" scoped src="./style.styl"></style>
