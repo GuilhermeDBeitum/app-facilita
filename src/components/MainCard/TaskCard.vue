@@ -1,6 +1,7 @@
 <template>
   <v-card color="#e9f4fb" height="100%">
     <Delete />
+    <Info />
     <v-container class="card" fluid>
       <v-row class="d-flex justify-end">
         <v-col cols="12" md="9">
@@ -31,6 +32,7 @@
           </v-card-title>
 
           <v-data-table
+            height="100%"
             class="text-center mt-1 table"
             single-select
             calculate-widths
@@ -44,7 +46,17 @@
             :search="search"
           >
             <template v-slot:item.action>
-              <v-checkbox class="checkbox" color="#1ad18f"></v-checkbox>
+              <v-checkbox light class="checkbox" color="#1ad18f"></v-checkbox>
+            </template>
+            <template slot="item.title" slot-scope="props">
+              <v-card-text
+                v-text="props.item.title"
+                class="text"
+                @click="
+                  ($store.state.modinfo.modalDescript = true),
+                    ($store.state.modinfo.item = props.item)
+                "
+              ></v-card-text>
             </template>
             <template v-slot:item.status="{ item }">
               <div v-if="item.status == 'Urgente'">
@@ -76,7 +88,7 @@
                     <v-list-item
                       @click="
                         ($store.state.modinfo.save_edit = true),
-                          ($store.state.modinfo.item = props)
+                          ($store.state.modinfo.item = 0)
                       "
                     >
                       <v-list-item-title> Editar </v-list-item-title>
@@ -102,12 +114,13 @@
 
 <script>
 import Delete from "../../components/Modal/ModalDelete.vue";
-
+import Info from "../Modal/ModalDescript.vue";
 export default {
   name: "TaskCard",
 
   components: {
     Delete,
+    Info,
   },
 
   data: () => ({
@@ -116,7 +129,7 @@ export default {
     search: "",
     headers: [
       { value: "action" },
-      { value: "title" },
+      { value: "title", class: "text" },
       { value: "status" },
       { value: "id" },
     ],
@@ -150,34 +163,22 @@ export default {
 
 <style lang="stylus">
 .card {
-  width: 750px;
-  margin-top: 100px;
+  width: 780px;
+  margin-top: 95px;
 }
 
 .checkbox {
   width: 1px;
 }
 
-.combo {
-  cursor: pointer;
-  padding: 20px;
-}
-
 .dots {
   margin-left: -25px;
-}
-
-.table {
-  margin: 17px;
-}
-
-.text {
-  word-break: break-all;
-  font-weight: bold;
+  float: right;
 }
 
 .status {
   float: right;
+  padding-left: 10px;
 }
 
 .sub {
@@ -185,5 +186,18 @@ export default {
   font-size: 14px;
   margin-top: -2px;
   color: #4ca5ff;
+}
+
+.table {
+  margin: 17px;
+}
+
+.text {
+  cursor: pointer;
+  width: 280px;
+  margin-left: -20px;
+  word-wrap: break-word;
+  font-weight: 500;
+  font-size: 14px;
 }
 </style>

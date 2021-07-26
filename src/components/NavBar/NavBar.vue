@@ -1,11 +1,18 @@
 <template>
-  <v-navigation-drawer v-model="drawer" absolute width="270" color="#f4fbff">
+  <v-navigation-drawer
+    v-model="drawer"
+    absolute
+    width="270"
+    height="100%"
+    color="#f4fbff"
+  >
     <v-navigation-drawer
       app
       v-model="drawer"
       absolute
       width="103px"
       color="#2693ff"
+      height="100%"
     >
       <v-avatar class="d-block text-center mx-auto mt-1" size="50" tile
         ><v-img src="../../assets/icone.png"></v-img

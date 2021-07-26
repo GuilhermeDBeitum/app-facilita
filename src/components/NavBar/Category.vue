@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-list dense class="menu pl-12" shaped flat>
+    <v-list dense class="menu pl-12 pa-0" shaped flat>
       <h3 class="pl-6">Categorias</h3>
       <br />
-      <v-list-item-group v-model="selected" color="primary">
+      <v-list-item-group v-model="selected" color="#41a0ff">
         <v-list-item v-for="(item, i) in category" :key="i">
           <span class="items"
-            ><span class="mark"> ></span> {{ item.value }}</span
+            ><span class="mark pa-0"> ></span> {{ item.value }}</span
           >
           <template v-slot:item.action>
             <v-chip color="#ff2e79"></v-chip>
