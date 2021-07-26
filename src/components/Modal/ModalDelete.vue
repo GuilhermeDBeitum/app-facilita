@@ -1,11 +1,11 @@
 <template>
   <v-dialog v-model="modalDelete" max-width="420px">
-    <v-card class="d-block text-center mx-auto mt-1" height="10%">
-      <v-card-title class="d-block text-center mx-auto mt-1">
+    <v-card class="d-block text-center mx-auto">
+      <v-card-title class="d-block text-center mx-auto">
         <v-avatar
           color="#edf6fc"
           class="d-block text-center mx-auto mt-1"
-          size="90"
+          size="92"
         >
           <i class="trash far fa-trash-alt" style="color: #4d6785"></i>
         </v-avatar>
@@ -24,22 +24,23 @@
       </v-card-text>
       <v-card-actions class="d-block text-center mx-auto pa-1">
         <v-btn
-          width="25%"
-          class="btn white--text"
+          width="26%"
+          class="btn white--text ma-1"
           color="#1ad18f"
           depressed
           @click="modalDelete = false"
           >Cancelar</v-btn
         >
         <v-btn
-          width="25%"
-          class="btn white--text"
+          width="26%"
+          class="btn white--text ma-1"
           color="#ff4874"
           depressed
           @click="deleteTask()"
           >Confirmar</v-btn
         >
       </v-card-actions>
+      <br />
     </v-card>
   </v-dialog>
 </template>

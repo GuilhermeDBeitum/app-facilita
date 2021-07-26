@@ -6,6 +6,7 @@ const SET_LOGIN = "SET_LOGIN";
 const SET_PASSWORD = "SET_PASSWORD";
 const SET_SNACKBAR = "SET_SNACKBAR";
 const SET_MODALDELETE = "SET_MODALDELETE";
+const SET_MODALDESCRIPT = "SET_MODALDESCRIPT";
 const SET_SAVE_EDIT = "SET_SAVE_EDIT";
 const SET_ITEM = "SET_ITEM";
 const SET_INDEX = "SET_INDEX";
@@ -17,6 +18,7 @@ const moduleInfo = {
     password: null,
     snackbar: null,
     modalDelete: null,
+    modalDescript: null,
     save_edit: null,
     item:null,
     index:null,
@@ -34,6 +36,9 @@ const moduleInfo = {
     },
     modalDelete: (state) => {
       return state.modalDelete;
+    },
+    modalDescript: (state) => {
+      return state.modalDescript;
     },
     save_edit: (state) => {
       return state.save_edit;
@@ -60,6 +65,9 @@ const moduleInfo = {
     },
     [SET_MODALDELETE](state, modalDelete) {
       state.modalDelete = modalDelete;
+    },
+    [SET_MODALDESCRIPT](state, modalDescript) {
+      state.modalDescript = modalDescript;
     },
     [SET_SAVE_EDIT](state, save_edit) {
       state.save_edit = save_edit;

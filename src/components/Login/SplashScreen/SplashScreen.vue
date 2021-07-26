@@ -4,7 +4,7 @@
     app
     width="420px"
     color="#2693ff"
-    height="587"
+    height="100%"
     class="pa-14"
     outlined
     tile

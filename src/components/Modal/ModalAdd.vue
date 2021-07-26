@@ -17,13 +17,25 @@
       </v-btn>
     </template>
     <template>
-      <v-card height="100%" class="pa-3">
+      <v-card height="100%" class="pa-2">
         <v-col cols="12" sm="12">
           <v-row align="center" justify="space-around">
             <v-col cols="12" sm="12">
               <v-col cols="12" sm="12">
-                <h3>{{ formTitle }}</h3>
+                <v-row no-gutters>
+                  <v-col cols="10" sm="6" md="10">
+                    <span style="font-size: 20px" class="combo">{{
+                      formTitle
+                    }}</span>
+                  </v-col>
 
+                  <v-col cols="2" md="2">
+                    <i
+                      @click="save_edit = false"
+                      class="close fas fa-times"
+                    ></i>
+                  </v-col>
+                </v-row>
                 <br />
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <label class="label">Titulo:</label>
@@ -59,14 +71,19 @@
                   <v-row no-gutters>
                     <v-col cols="12" sm="6" md="8">
                       <v-radio-group row class="combo pa-0" v-model="status">
-                        <v-radio label="Urgente" value="Urgente"></v-radio>
+                        <v-radio
+                          label="Urgente"
+                          value="Urgente"
+                          color="#41a0ff"
+                        ></v-radio>
                         <v-radio
                           label="Importante"
                           value="Importante"
+                          color="#41a0ff"
                         ></v-radio>
                       </v-radio-group>
                     </v-col>
-                    <v-col cols="12" md="4" class="pa-4">
+                    <v-col cols="12" md="4" class="pa-5">
                       <v-btn
                         @click="validate()"
                         right
@@ -92,6 +109,7 @@
 
 <script>
 export default {
+  name: "Add_Edit",
   data: () => ({
     index: null,
     valid: true,
@@ -163,6 +181,7 @@ export default {
       this.$store.state.modinfo.status = item.status;
       this.editedItem = Object.assign(item, {});
       this.save_edit = false;
+      this.index = 0;
     },
   },
 };
@@ -174,13 +193,21 @@ a {
 }
 
 .btn {
-  margin-right: 20px;
-  margin-top: 5px;
+  margin-right: 12px;
+  margin-top: 1px;
   text-transform: capitalize;
 }
 
 .combo {
-  margin-left: -6px;
+  margin-left: -1px;
   font-weight: 600;
+}
+
+.close {
+  color: #666666;
+  margin-right: -16px;
+  margin-top: -18px;
+  font-size: 12px;
+  float: right;
 }
 </style>

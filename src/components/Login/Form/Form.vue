@@ -120,7 +120,7 @@ a {
 }
 
 .btn {
-  margin: 20px;
+  margin: 12px;
   margin-top: 5px;
   text-transform: capitalize;
 }
